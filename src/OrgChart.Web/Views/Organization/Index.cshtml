@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OrgChart.Web.ViewModels.Organization.OrganizationViewModel>
+
+<a class="float-right" asp-controller="Organization" asp-action="Add">Add Organization</a>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.Name)</th>
+                    <th>@Html.DisplayNameFor(m => m.PeopleCount)</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var organization in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(m => organization.Name)</td>
+                    <td>@Html.DisplayFor(m => organization.PeopleCount)</td>
+                    <td>
+                        <a asp-controller="Organization" asp-action="People" asp-route-organizationid="@organization.Id">List</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Organization" asp-action="Chart" asp-route-organizationid="@organization.Id">Chart</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Organization" asp-action="AddPerson" asp-route-organizationid="@organization.Id">Add Person</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

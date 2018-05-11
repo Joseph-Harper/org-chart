@@ -1,0 +1,26 @@
+﻿@model IEnumerable<OrgChart.Web.ViewModels.Organization.PersonViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.FirstName)</th>
+            <th>@Html.DisplayNameFor(m => m.LastName)</th>
+            <th>@Html.DisplayNameFor(m => m.Title)</th>
+            <th>@Html.DisplayNameFor(m => m.EmailAddress)</th>
+            <th>@Html.DisplayNameFor(m => m.PhoneNumber)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => person.FirstName)</td>
+                <td>@Html.DisplayFor(m => person.LastName)</td>
+                <td>@Html.DisplayFor(m => person.Title)</td>
+                <td>@Html.DisplayFor(m => person.EmailAddress)</td>
+                <td>@Html.DisplayFor(m => person.PhoneNumber)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

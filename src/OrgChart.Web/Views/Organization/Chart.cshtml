@@ -1,0 +1,26 @@
+﻿@model OrgChart.Web.ViewModels.Organization.ChartViewModel
+
+<h2>Chart</h2>
+<div id="chart_div"></div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', { packages: ["orgchart"] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Id');
+        data.addColumn('string', 'ReportsToId');
+
+        var model = @Html.Raw(Model.PeopleJson);
+
+        model.forEach(function (item, index) {
+            data.addRows([
+                [{ v: item.Id, f: '<div>' + item.Name + '</div><small class="text-muted">' + item.Title + '</small>' }, item.ReportsToId]
+            ]);
+        });
+
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+        chart.draw(data, { allowHtml: true });
+    }
+</script>

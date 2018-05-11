@@ -1,0 +1,5 @@
+﻿@model OrgChart.Web.ViewModels.Organization.PeopleViewModel
+
+<a class="float-right" asp-controller="Organization" asp-action="AddPerson" asp-route-organizationid="@Model.OrganizationId">Add Person</a>
+@{await Html.RenderPartialAsync("PersonViewModelList", Model.People);}
+
