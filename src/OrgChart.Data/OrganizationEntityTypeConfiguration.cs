@@ -9,11 +9,11 @@ namespace OrgChart.Data
         public void Configure(EntityTypeBuilder<Organization> builder)
         {
             builder.HasKey(o => o.Id);
-            builder.Metadata.FindNavigation(nameof(Organization.People)).SetPropertyAccessMode(PropertyAccessMode.Field);
-            builder.Property(o => o.Id).IsRequired();
-            builder.Property(o => o.UserId).IsRequired();
-            builder.Property(o => o.Name).HasMaxLength(255).IsRequired();
+            builder.Property(o => o.Id).HasColumnName("OrganizationId").IsRequired();
+            builder.Property(o => o.UserId).HasColumnName("UserId").HasMaxLength(450).IsRequired();
+            builder.Property(o => o.Name).HasColumnName("Name").HasMaxLength(255).IsRequired();
 
+            builder.Metadata.FindNavigation(nameof(Organization.People)).SetPropertyAccessMode(PropertyAccessMode.Field);
             builder.HasMany(o => o.People).WithOne(p => p.Organization).HasForeignKey("OrganizationId");
         }
     }

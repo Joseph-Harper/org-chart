@@ -9,15 +9,14 @@ namespace OrgChart.Data
         public void Configure(EntityTypeBuilder<Person> builder)
         {
             builder.HasKey(p => p.Id);
-
+            builder.Property(p => p.Id).HasColumnName("PersonId").IsRequired();
+            builder.Property(p => p.UserId).HasColumnName("UserId").HasMaxLength(450).IsRequired();
+            builder.Property(p => p.FirstName).HasColumnName("FirstName").HasMaxLength(255).IsRequired();
+            builder.Property(p => p.LastName).HasColumnName("LastName").HasMaxLength(255).IsRequired();
+            builder.Property(p => p.EmailAddress).HasColumnName("EmailAddress").HasMaxLength(255);
+            builder.Property(p => p.PhoneNumber).HasColumnName("PhoneNumber").HasMaxLength(20);
+            builder.Property(p => p.Title).HasColumnName("Title").HasMaxLength(100);
             builder.Property<int>("OrganizationId");
-            builder.Property(p => p.Id).IsRequired();
-            builder.Property(p => p.UserId).IsRequired();
-            builder.Property(p => p.FirstName).IsRequired().HasMaxLength(255);
-            builder.Property(p => p.LastName).IsRequired().HasMaxLength(255);
-            builder.Property(p => p.EmailAddress).HasMaxLength(255);
-            builder.Property(p => p.PhoneNumber).HasMaxLength(20);
-            builder.Property(p => p.Title).HasMaxLength(100);
         }
     }
 }
